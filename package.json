@@ -1,0 +1,17 @@
+{
+  "name": "@mdemeter/enki",
+  "description": "logger",
+  "version": "0.0.1",
+  "main": "enki.js",
+  "author": "Marton Demeter <marton1029@gmail.com> (https://www.martondemeter.com)",
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "node enki.js",
+    "dev": "nodemon enki.js",
+    "test": "node test/test.js"
+  },
+  "dependencies": {
+    "colors-md": "^0.0.6",
+    "pad-md": "^0.0.5"
+  }
+}
