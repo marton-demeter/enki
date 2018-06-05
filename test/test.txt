@@ -1,0 +1,35 @@
+20:43:44 Hello World!
+20:43:44 debug    Hello World!
+20:43:44 info     Hello World!
+20:43:44 success  Hello World!
+20:43:44 warning  Hello World!
+20:43:44 error    Hello World!
+20:43:44 critical Hello World!
+20:43:44 Hello World!
+20:43:44 debug    Hello World!
+20:43:44 info     Hello World!
+20:43:44 success  Hello World!
+20:43:44 warning  Hello World!
+20:43:44 error    Hello World!
+20:43:44 critical Hello World!
+20:43:45 Hello World!
+20:43:45 debug    Hello World!
+20:43:45 info     Hello World!
+20:43:45 success  Hello World!
+20:43:45 warning  Hello World!
+20:43:45 error    Hello World!
+20:43:45 critical Hello World!
+20:43:45 Hello World!
+20:43:45 debug    Hello World!
+20:43:45 info     Hello World!
+20:43:45 success  Hello World!
+20:43:45 warning  Hello World!
+20:43:45 error    Hello World!
+20:43:45 critical Hello World!
+20:43:46 Hello World!
+20:43:46 debug    Hello World!
+20:43:46 info     Hello World!
+20:43:46 success  Hello World!
+20:43:46 warning  Hello World!
+20:43:46 error    Hello World!
+20:43:46 critical Hello World!

@@ -24,7 +24,7 @@ class Enki {
         warning: 'df2',
         error: 'f55',
         critical: 'f23',
-      }
+      },
       padding: {
         token: 8
       }
