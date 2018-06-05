@@ -4,7 +4,6 @@ const Enki = require('../enki.js');
 let fd = require('fs').openSync(join(__dirname,'test.txt'),'a+');
 
 let enki = new Enki([process.stdout,fd]);
-enki.enabled(['timestamp']);
 
 setInterval(_ => {
   enki.log('Hello World!');

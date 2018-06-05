@@ -5,6 +5,7 @@ const pad = require('pad-md');
 class Enki {
   
   constructor( args ) {
+    this.targets = new Array();
     if(args && args.length)
       this.targets = args.map(arg => ({
         type: typeof arg == 'number' ? 'fd' : 'stream',
@@ -12,11 +13,20 @@ class Enki {
       }));
     this.separator = { before: '', after: ' ' };
     this.boundary = { left: '', right: '' };
-    this._enabled = [ 'date','timestamp' ];
+    this._enabled = [ 'timestamp' ];
     this.config = {
       colors: {
-        text: '#fff',
-        prologue: '#999'
+        text: 'fff',
+        prologue: '999',
+        debug: '999',
+        info: '59f',
+        success: '2f6',
+        warning: 'df2',
+        error: 'f55',
+        critical: 'f23',
+      }
+      padding: {
+        token: 8
       }
     }
   }
@@ -63,7 +73,9 @@ class Enki {
   
   _createToken( token ) {
     if(!token) return '';
-    let l = this.boundary.left.length + this.boundary.right.length + 8;
+    let l = this.boundary.left.length + 
+            this.boundary.right.length + 
+            this.config.padding.token;
     let subtoken = pad.right(this.boundary.left + token + this.boundary.right, l);
     return (this.separator.before + subtoken + this.separator.after);
   }
@@ -88,23 +100,32 @@ class Enki {
   }
   
   debug( text ) {
-    this.log(text, this._createTokenText('DEBUG'), '#999');
+    this.log(text, this._createTokenText('DEBUG'), this.config.colors.debug);
   }
   info( text ) {
-    this.log(text, this._createTokenText('INFO'), '#59f');
+    this.log(text, this._createTokenText('INFO'), this.config.colors.info);
   }
   success( text ) {
-    this.log(text, this._createTokenText('SUCCESS'), '#2f6');
+    this.log(text, this._createTokenText('SUCCESS'), this.config.colors.success);
   }
   warning( text ) {
-    this.log(text, this._createTokenText('WARNING'), '#df2');
+    this.log(text, this._createTokenText('WARNING'), this.config.colors.warning);
   }
   error( text ) {
-    this.log(text, this._createTokenText('ERROR'), '#f55');
+    this.log(text, this._createTokenText('ERROR'), this.config.colors.error);
   }
   critical( text ) {
-    this.log(text, this._createTokenText('CRITICAL'), '#f23');
+    this.log(text, this._createTokenText('CRITICAL'), this.config.colors.critical);
   }
+  
+  red( text, token='' ) { this.log(text, token, 'f00') }
+  pink( text, token='' ) { this.log(text, token, 'f29') }
+  blue( text, token='' ) { this.log(text, token, '00f') }
+  cyan( text, token='' ) { this.log(text, token, '0ff') }
+  green( text, token='' ) { this.log(text, token, '0f0') }
+  yellow( text, token='' ) { this.log(text, token, 'ff0') }
+  orange( text, token='' ) { this.log(text, token, 'fa0') }
+  purple( text, token='' ) { this.log(text, token, '92f') }
   
   _date() {
     let d = new Date().getDate();
@@ -131,6 +152,29 @@ class Enki {
         break;
       }
     }
+  }
+  
+  color( item, color ) {
+    if(item === 'prologue') this.config.colors.prologue = color;
+    if(item === 'debug') this.config.colors.debug = color;
+    if(item === 'info') this.config.colors.info = color;
+    if(item === 'success') this.config.colors.success = color;
+    if(item === 'warning') this.config.colors.warning = color;
+    if(item === 'error') this.config.colors.error = color;
+    if(item === 'critical') this.config.colors.critical = color;
+    if(item === 'text') this.config.colors.text = color;
+  }
+  
+  padding( item, number ) {
+    if(item === 'token') this.config.padding.token = number;
+  }
+  
+  add( target ) {
+    this.targets.push(target);
+  }
+  
+  targets( targets ) {
+    this.targets = targets || new Array();
   }
   
 }
