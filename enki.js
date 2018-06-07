@@ -29,6 +29,15 @@ class Enki {
         token: 8
       }
     }
+    this.enums = {
+      critical: 0,
+      error: 1,
+      warning: 2,
+      info: 3,
+      success: 3,
+      debug: 4,
+    }
+    this._level = 3;
   }
   
   log( string, token, tokenColor ) {
@@ -100,21 +109,27 @@ class Enki {
   }
   
   debug( text ) {
-    this.log(text, this._createTokenText('DEBUG'), this.config.colors.debug);
+    if( this._level == 4)
+      this.log(text, this._createTokenText('DEBUG'), this.config.colors.debug);
   }
   info( text ) {
+    if( this._level >= 3)
     this.log(text, this._createTokenText('INFO'), this.config.colors.info);
   }
   success( text ) {
-    this.log(text, this._createTokenText('SUCCESS'), this.config.colors.success);
+    if( this._level >= 3)
+      this.log(text, this._createTokenText('SUCCESS'), this.config.colors.success);
   }
   warning( text ) {
-    this.log(text, this._createTokenText('WARNING'), this.config.colors.warning);
+    if( this._level >= 2)
+      this.log(text, this._createTokenText('WARNING'), this.config.colors.warning);
   }
   error( text ) {
-    this.log(text, this._createTokenText('ERROR'), this.config.colors.error);
+    if( this._level >= 1)
+      this.log(text, this._createTokenText('ERROR'), this.config.colors.error);
   }
   critical( text ) {
+    if( this._level >= 0)
     this.log(text, this._createTokenText('CRITICAL'), this.config.colors.critical);
   }
   
@@ -175,6 +190,10 @@ class Enki {
   
   targets( targets ) {
     this.targets = targets || new Array();
+  }
+  
+  level( lvl ) {
+    this._level = this.enums[lvl] || 3;
   }
   
 }
