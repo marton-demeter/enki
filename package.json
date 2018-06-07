@@ -1,7 +1,7 @@
 {
   "name": "@mdemeter/enki",
   "description": "logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "enki.js",
   "author": "Marton Demeter <marton1029@gmail.com> (https://www.martondemeter.com)",
   "license": "GPL-3.0",
