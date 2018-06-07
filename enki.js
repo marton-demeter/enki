@@ -40,7 +40,8 @@ class Enki {
     this._level = 3;
   }
   
-  log( string, token, tokenColor ) {
+  log( string, token, tokenColor, lvl=3 ) {
+    if( this._level < lvl ) return;
     this.targets.forEach(_ => {
       if(_.type == 'stream') {
         if(!_.target._type=='tty')
@@ -109,28 +110,40 @@ class Enki {
   }
   
   debug( text ) {
-    if( this._level == 4)
-      this.log(text, this._createTokenText('DEBUG'), this.config.colors.debug);
+    this.log(text,
+             this._createTokenText('DEBUG'),
+             this.config.colors.debug,
+             this.enums.debug);
   }
   info( text ) {
-    if( this._level >= 3)
-    this.log(text, this._createTokenText('INFO'), this.config.colors.info);
+    this.log(text,
+             this._createTokenText('INFO'),
+             this.config.colors.info,
+             this.enums.info);
   }
   success( text ) {
-    if( this._level >= 3)
-      this.log(text, this._createTokenText('SUCCESS'), this.config.colors.success);
+    this.log(text,
+             this._createTokenText('SUCCESS'),
+             this.config.colors.success,
+             this.enums.success);
   }
   warning( text ) {
-    if( this._level >= 2)
-      this.log(text, this._createTokenText('WARNING'), this.config.colors.warning);
+    this.log(text,
+             this._createTokenText('WARNING'),
+             this.config.colors.warning,
+             this.enums.warning);
   }
   error( text ) {
-    if( this._level >= 1)
-      this.log(text, this._createTokenText('ERROR'), this.config.colors.error);
+    this.log(text,
+             this._createTokenText('ERROR'),
+             this.config.colors.error,
+             this.enums.error);
   }
   critical( text ) {
-    if( this._level >= 0)
-    this.log(text, this._createTokenText('CRITICAL'), this.config.colors.critical);
+    this.log(text,
+             this._createTokenText('CRITICAL'),
+             this.config.colors.critical,
+             this.enums.critical);
   }
   
   red( text, token='' ) { this.log(text, token, 'f00') }
