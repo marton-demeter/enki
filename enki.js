@@ -36,6 +36,11 @@ class Enki {
       info: 3,
       success: 3,
       debug: 4,
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4
     }
     this._level = 3;
   }
@@ -146,14 +151,15 @@ class Enki {
              this.enums.critical);
   }
   
-  red( text, token='' ) { this.log(text, token, 'f00') }
-  pink( text, token='' ) { this.log(text, token, 'f29') }
-  blue( text, token='' ) { this.log(text, token, '00f') }
-  cyan( text, token='' ) { this.log(text, token, '0ff') }
-  green( text, token='' ) { this.log(text, token, '0f0') }
-  yellow( text, token='' ) { this.log(text, token, 'ff0') }
-  orange( text, token='' ) { this.log(text, token, 'fa0') }
-  purple( text, token='' ) { this.log(text, token, '92f') }
+  red(){this.log(arguments[0],arguments[1],'f00',this.enums[arguments[2]])}
+  pink(){this.log(arguments[0],arguments[1],'f29',this.enums[arguments[2]])}
+  blue(){this.log(arguments[0],arguments[1],'00f',this.enums[arguments[2]])}
+  cyan(){this.log(arguments[0],arguments[1],'0ff',this.enums[arguments[2]])}
+  gray(){this.log(arguments[0],arguments[1],'999',this.enums[arguments[2]])}
+  green(){this.log(arguments[0],arguments[1],'0f0',this.enums[arguments[2]])}
+  yellow(){this.log(arguments[0],arguments[1],'ff0',this.enums[arguments[2]])}
+  orange(){this.log(arguments[0],arguments[1],'fa0',this.enums[arguments[2]])}
+  purple(){this.log(arguments[0],arguments[1],'92f',this.enums[arguments[2]])}
   
   _date() {
     let d = new Date().getDate();
