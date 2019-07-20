@@ -1,11 +1,19 @@
 {
   "name": "@mdemeter/enki",
   "description": "logger",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "enki.js",
   "author": "Marton Demeter <marton1029@gmail.com> (https://www.martondemeter.com)",
   "license": "GPL-3.0",
-  "keywords": ["log","logger","print","console","file","output","enki"],
+  "keywords": [
+    "log",
+    "logger",
+    "print",
+    "console",
+    "file",
+    "output",
+    "enki"
+  ],
   "scripts": {
     "start": "node enki.js",
     "dev": "nodemon enki.js",
