@@ -1,9 +1,7 @@
 const { join } = require('path');
-const Enki = require('../enki.js');
+const { Enki } = require('../enki.js');
 
-let fd = require('fs').openSync(join(__dirname,'test.txt'),'a+');
-
-let enki = new Enki([process.stdout,fd]);
+let enki = require('../enki.js').stdout;
 
 enki.red('world','hello','debug');
 enki.pink('world','hello','info');
@@ -15,12 +13,8 @@ enki.yellow('world','hello',4);
 enki.orange('world','hello',3);
 enki.purple('world','hello',2);
 
-setInterval(_ => {
-  enki.log('Hello World!');
-  enki.debug('Hello World!');
-  enki.info('Hello World!');
-  enki.success('Hello World!');
-  enki.warning('Hello World!');
-  enki.error('Hello World!');
-  enki.critical('Hello World!');
-}, 500);
+for(let i = 0; i < 100000; i++) {
+  enki.replace().info('test ' + i);
+}
+enki.replace().info('yes').end();
+enki.replace().info('no').end();
