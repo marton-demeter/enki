@@ -245,12 +245,22 @@ Log to console:
 ```javascript
 const enki = require('@mdemeter/enki').stdout;
 enki.info('This is a message');
+enki.success('Successfully printed message');
+
+// Console output:
+//
+// hh:mm:ss info     This is a message
+// hh:mm:ss success  Successfully printed message
 ```
 
 Log to file:
 ```javascript
 const enki = require('@mdemeter/enki').fd;
 enki.info(`This message logged to file: ${__dirname}/enki.log`);
+
+// Output in file:
+//
+// hh:mm:ss info     This message logged to file: /path/to/enki.log
 ```
 
 Change output target:
@@ -258,11 +268,11 @@ Change output target:
 const enki = require('@mdemeter/enki').fd;
 // Change from writing to file to writing to console
 enki.targets([process.stdout]);
-enki.info('This message is not output to console');
+enki.info('This message is now output to console');
 
 // Console output:
 //
-// hh:mm:ss info     This message is not output to console
+// hh:mm:ss info     This message is now output to console
 ```
 
 Log to multiple targets:
