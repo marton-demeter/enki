@@ -7,14 +7,14 @@ customizable output formats.
 
 ### Installation
 
-NPM:
+npm:
 ```bash
-% npm i --save @mdemeter/enki
+$ npm i --save @mdemeter/enki
 ```
 
-YARN:
+yarn:
 ```bash
-% yarn add @mdemeter/enki
+$ yarn add @mdemeter/enki
 ```
 
 ### Usage
@@ -29,11 +29,6 @@ const { Enki } = require('@mdemeter/enki');
 Pre-configured for process.stdout:
 ```javascript
 const enki = require('@mdemeter/enki').stdout;
-```
-
-Pre-configured for file (\_\_dirname/enki.log):
-```javascript
-const enki = require('@mdemeter/enki').fd;
 ```
 
 #### Targets (If not pre-configured target)
@@ -91,6 +86,8 @@ enki.warning(<message>);   // token: warning,  color: yellow
 enki.error(<message>);     // token: error,    color: red
 enki.critical(<message>);  // token: critical, color: dark red
 
+// Console output:
+//
 // hh:mm:ss <level> <message>
 ```
 
@@ -111,7 +108,9 @@ enki.yellow(<message>,<token>,<level>);
 enki.orange(<message>,<token>,<level>);
 enki.purple(<message>,<token>,<level>);
 
-// hh:mm:ss <token> <message>
+// Console output:
+//
+// hh:mm:ss <token(color)>  <message>
 ```
 
 Log:
@@ -120,7 +119,7 @@ Log:
 // Creates a log message with the highest granularity.
 //
 // message: string
-// token: string
+// token: stringoption
 // color: string, format: '#xxx'|'xxx'|'xxx, xxx, xxx'|'xxx xxx xxx' (hex, rgb)
 // level: string, values: 'debug'|'info'|'success'|'warning'|'error'|'critical'
 // level: integer, values:      4|     3|        3|        2|      1|         0
@@ -130,9 +129,13 @@ Log:
 // <message> required
 // <token>   required
 // <color>   required
-// <level>   options, default: 3 ('info')
+// <level>   optional, default: 3 ('info')
 
 enki.log(<message>,<token>,<color>,<level>);
+
+// Console output:
+//
+// hh:mm:ss <token>  <message>
 ```
 
 #### Customize
@@ -150,6 +153,8 @@ Feature (prologue) options:
 // default values: ['timestamp']
 //
 // feature: string|array, values: 'date','timestamp'
+//
+// Various console outputs:
 //
 // hh:mm:ss <level/token> <message>            // default, timestamp enabled
 // DD:MM:YYYY hh:mm:ss <level/token> <message> // timestamp, date enabled
@@ -255,17 +260,24 @@ enki.success('Successfully printed message');
 
 Log to file:
 ```javascript
-const enki = require('@mdemeter/enki').fd;
-enki.info(`This message logged to file: ${__dirname}/enki.log`);
+const { Enki } = require('@mdemeter/enki');
+const fd = require('fs').openSync(
+           require('path').join(__dirname,'log'), 'w+');
+const enki = new Enki([fd]);
+enki.info(`This message logged to file: ${__dirname}/log`);
 
 // Output in file:
 //
-// hh:mm:ss info     This message logged to file: /path/to/enki.log
+// hh:mm:ss info     This message logged to file: /path/to/log
 ```
 
 Change output target:
 ```javascript
-const enki = require('@mdemeter/enki').fd;
+const { Enki } = require('@mdemeter/enki');
+const fd = require('fs').openSync(
+           require('path').join(__dirname,'log'), 'w+');
+const enki = new Enki([fd]);
+
 // Change from writing to file to writing to console
 enki.targets([process.stdout]);
 enki.info('This message is now output to console');
