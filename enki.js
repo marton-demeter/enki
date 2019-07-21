@@ -278,8 +278,5 @@ class Enki {
 }
 
 const stdout = new Enki([process.stdout]);
-const fd = new Enki(
-  [require('fs').openSync(require('path').join(__dirname,'enki.log'),'w+')]
-);
 
-module.exports = { Enki, stdout, fd };
+module.exports = { Enki, stdout };
